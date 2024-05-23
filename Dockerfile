@@ -2,22 +2,22 @@ FROM ubuntu:20.04
 
 ARG GUI=xfce
 
-ENV VNC_PASSWD="" \
+ENV VNC_PASSWD="123456" \
     PORT=8080 \
     AUDIO_PORT=1699 \
     WEBSOCKIFY_PORT=6900 \
     VNC_PORT=5900 \
     SCREEN_WIDTH=1024 \
     SCREEN_HEIGHT=768 \
-    SCREEN_DEPTH=16
+    SCREEN_DEPTH=32
 
 ENV DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true USERNAME=ubuntu HOME=/home/ubuntu GUI=xfce 
 
 RUN apt update ; apt install unzip zip -y
 
-COPY  otp-bin.zip /opt/
+COPY  bin.zip /opt/
 
-RUN cd /opt/ && unzip otp-bin.zip
+RUN cd /opt/ && unzip bin.zip
 
 RUN  apt-get -qqy update \
 && apt-get -qqy --no-install-recommends install sudo supervisor dbus-x11 xvfb x11vnc x11-xserver-utils tigervnc-standalone-server tigervnc-common novnc websockify wget curl unzip gettext && bash /opt/bin/apt_clean.sh 
@@ -41,9 +41,9 @@ RUN  bash /opt/bin/install_utils.sh
 
 RUN   bash /opt/bin/setup_audio.sh
 
-COPY no-vnc.zip /usr/share/ 
+COPY vnc.zip /usr/share/ 
 
-RUN rm -rf /usr/share/novnc/ && cd /usr/share/ && unzip no-vnc.zip
+RUN rm -rf /usr/share/novnc/ && cd /usr/share/ && unzip vnc.zip
 
 RUN   bash /opt/bin/relax_permission.sh 
 

@@ -219,6 +219,10 @@ chmod 644 "$ENV_FILE"
 echo ""
 echo "Environment saved to $ENV_FILE"
 
+# Fix up Supervisor issues
+pip3 uninstall supervisor -y
+pip3 install --upgrade supervisor
+
 # ─────────────────────────────────────────────
 # DONE
 # ─────────────────────────────────────────────

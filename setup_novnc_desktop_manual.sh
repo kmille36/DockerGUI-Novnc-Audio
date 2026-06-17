@@ -12,7 +12,7 @@ set -e  # Exit on any error
 # ─────────────────────────────────────────────
 GUI="${GUI:-xfce}"
 VNC_PASSWD="${VNC_PASSWD:-123456}"
-PORT="${PORT:-8080}"
+PORT="${PORT:-8081}"
 AUDIO_PORT="${AUDIO_PORT:-1699}"
 WEBSOCKIFY_PORT="${WEBSOCKIFY_PORT:-6900}"
 VNC_PORT="${VNC_PORT:-5900}"
